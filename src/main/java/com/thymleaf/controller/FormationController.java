@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.thymleaf.model.Formation;
 import com.thymleaf.service.FormationService;
@@ -19,14 +19,29 @@ import com.thymleaf.service.FormationService;
 
 
 @Controller
+@RequestMapping()
 public class FormationController {
 
 	@Autowired
 	FormationService formationService;
 
 	@GetMapping("index")
-	public String Page1(Model m) {
+	public String Page1(Model m, @RequestParam(name = "titre", required = false) String titre) {
+		
+		
 		List<Formation> formations = formationService.SelectAll();
+		
+		if(titre == null) {
+			
+			formations = formationService.SelectAll();	
+		}
+			
+		else {
+			
+		formations = formationService.filtreTitreUnique(titre);
+			
+		}
+		
 		Formation formation = new Formation();
 		m.addAttribute("formation", formation);
 		m.addAttribute("formations", formations);

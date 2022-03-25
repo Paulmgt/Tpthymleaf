@@ -2,7 +2,7 @@ package com.thymleaf.model;
 
 import java.io.Serializable;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,6 +43,7 @@ public class Formateur implements Serializable{
 	private String tel;
 	
 	@Email
+	@Column(unique = true)
 	private String email;
 
 	@Override

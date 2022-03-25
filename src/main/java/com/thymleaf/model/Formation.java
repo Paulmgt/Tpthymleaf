@@ -26,7 +26,7 @@ public class Formation implements Serializable {
 	private String description;
 	
 	@NotNull
-	private Double prix;
+	private double prix;
 
 	@Override
 	public String toString() {
@@ -37,7 +37,7 @@ public class Formation implements Serializable {
 		
 	}
 
-	public Formation(String titre, String description, @NotNull Double prix) {
+	public Formation(String titre, String description, @NotNull double prix) {
 		
 		this.titre = titre;
 		this.description = description;
@@ -68,11 +68,11 @@ public class Formation implements Serializable {
 		this.description = description;
 	}
 
-	public Double getPrix() {
+	public double getPrix() {
 		return prix;
 	}
 
-	public void setPrix(Double prix) {
+	public void setPrix(double prix) {
 		this.prix = prix;
 	}
 	
