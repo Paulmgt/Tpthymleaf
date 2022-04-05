@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.thymleaf.model.Formation;
 import com.thymleaf.service.FormationService;
@@ -26,21 +26,21 @@ public class FormationController {
 	FormationService formationService;
 
 	@GetMapping("index")
-	public String Page1(Model m, @RequestParam(name = "titre", required = false) String titre) {
+	public String Page1(Model m ) {
 		
 		
 		List<Formation> formations = formationService.SelectAll();
 		
-		if(titre == null) {
+//		if(titre == null) {
 			
-			formations = formationService.SelectAll();	
-		}
+//			formations = formationService.SelectAll();	
+//		}
 			
-		else {
+//		else {
 			
-		formations = formationService.filtreTitreUnique(titre);
+//		formations = formationService.filtreTitreUnique(titre);
 			
-		}
+//		}
 		
 		Formation formation = new Formation();
 		m.addAttribute("formation", formation);
@@ -51,13 +51,13 @@ public class FormationController {
 	@PostMapping("save")
 	public String createformation(@ModelAttribute(name = "formation") Formation formation) {
 		formationService.saveFormation(formation);
-		return "redirect:/";
+		return "redirect:/index";
 	}
 
 	@RequestMapping(value = "delete/{id}", method = { RequestMethod.GET, RequestMethod.DELETE })
 	public String supression(@PathVariable int id) {
 		formationService.delete(id);
-		return "redirect:/";
+		return "redirect:/index";
 	}
 
 //	@GetMapping("titre")
